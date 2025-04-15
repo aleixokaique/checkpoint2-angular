@@ -1,1 +1,223 @@
-<p>control-flow works!</p>
+<h2>Exercício 1: Uso Básico do switch</h2>
+ <label for="seletor-mes">Insira um mês: </label>
+ <input id="seletor-mes" type="number" (change)="trocarMes($event)">
+ 
+ @switch (mes) {
+     @case (1) {
+       <p>Janeiro</p>
+     }
+     @case (2) {
+       <p>Fevereiro</p>
+     }
+     @case (3) {
+       <p>Março</p>
+     }
+     @case (4) {
+       <p>Abril</p>
+     }
+     @case (5){
+       <p>Maio</p>
+     }
+     @case (6) {
+       <p>Junho</p>
+     }
+     @case (7) {
+       <p>Julho</p>
+     }
+     @case (8) {
+       <p>Agosto</p>
+     }
+     @case (9) {
+       <p>Setembro</p>
+     }
+     @case (10) {
+       <p>Outubro</p>
+     }
+     @case (11) {
+       <p>Novembro</p>
+     }
+     @case (12) {
+       <p>Dezembro</p>
+     }
+     @default {
+       <p>Mês não encontrado</p>
+     }
+   }
+ 
+   <hr>
+
+   <h2>Exercício 2: Lista Dinâmica com for </h2>
+ 
+   <ul>
+     @for(item of itens; track $index){
+         <li>{{item}} - {{ $index }}</li>
+     } @empty {
+         <li>Nenhum item na lista </li>
+     }
+   </ul>
+
+
+ 
+ <hr>
+ 
+ <h2>Exercício 3: Condicional com if e else</h2>
+ 
+ <label for="seletor-idade">Insira uma idade: </label>
+ <input id="seletor-idade" type="number" (change)="trocarIdade($event)">
+ 
+ @if(idade >= 18){
+     <p class="color-green">Acesso permitido</p>
+ } @else {
+     <p class="color-red">Acesso negado</p>
+ }
+ 
+ <hr>
+
+ <h2> Exercício 4: Lista com Ações Dinâmicas</h2>
+
+<ul>
+    @for(tarefa of tarefas; track $index){
+        <li>{{tarefa}}
+        <button (click)="removerTarefa( $index )">Remover Tarefa</button>
+    </li>
+    } @empty {
+        <p>Nenhuma tarefa na lista</p>
+    }
+</ul>
+
+<hr>
+
+<h2>Exercício 5: Switch com Múltiplos Cases</h2>
+
+<label for="selector-status">Selecione um Status para o pedido</label>
+<select id="selector-status" (change)="trocarStatus($event)">
+  <option value="pendente">Pendente</option>
+  <option value="enviado">Enviado</option>
+  <option value="entregue">Entregue</option>
+</select>
+
+
+@switch (status){
+    @case ("pendente"){
+        <p>Aguardando confirmação</p>
+    }
+    @case ("enviado"){
+        <p>Pedido a caminho</p>
+    }
+    @case ("entregue"){
+        <p>Pedido entregue</p>
+    }
+    @default{
+        <p>Status desconhecido</p>
+    }
+}
+
+<hr>
+
+<h2>Exercício 6: Lista de Objetos com for</h2>
+<ul>
+
+    @for(usuario of usuarios; track usuario.nome){
+        <li>Nome: {{usuario.nome}}, Idade: {{usuario.idade}}</li>
+    } @empty {
+        <p>Nenhum usuário cadastrado</p>
+    }
+</ul>
+
+<hr>
+
+<h2>Exercício 7: Switch com Números e Strings</h2>
+
+<label for="seletor-numero">Insira um Número </label>
+<input id="seletor-numero" type="text" (change)="trocarNumero($event)">
+
+@switch(numero){
+    @case("1"){
+        <p>Um</p>
+    }
+    @case("um"){
+        <p>Um</p>
+    }
+    @case("2"){
+        <p>Dois</p>
+    }
+    @case("dois"){
+        <p>Dois</p>
+    }
+    @default{
+        <p>Valor não reconhecido</p>
+    }
+}
+
+<hr>
+
+<h2>Exercício 8: Sistema de Login com if e else</h2>
+
+
+<form action="">
+    <p>(usuário e senha corretos: "user&#64;teste.com", "123456")</p>
+<label for="email">Insira o Email: </label>
+<input id="email" type="email" required (change)="escreverEmail($event)">
+
+<label for="senha"> Insira a Senha: </label>
+<input id="senha" type="password" minlength="6"  required (change)="escreverSenha($event)">
+@if(email === "" || senha === ""){
+    <p class="color-red">Campos Obrigatórios!!!</p>
+} @else if(email === "user@teste.com" && senha === "123456"){
+    <p class="color-green">Login bem sucedido!!</p>
+    <button>Salvar</button>
+} @else {
+    <p class="color-red">Credenciais Inválidas</p>
+}
+</form>
+
+<hr>
+
+<h2>Exercicio 9: Lista de Produtos com Condicionais</h2>
+
+@for(produto of produtos; track produto.nome){
+    @if(produto.promocao == true){
+        <p class="promocao">Nome: {{produto.nome}} | Preço: {{produto.preco}} | Promoção: {{produto.promocao}}</p>
+    } @else {
+        <p>Nome: {{produto.nome}} | Preço: {{produto.preco}} | Promoção: {{produto.promocao}}</p>
+    }
+} @empty {
+    <p>Nenhum produto cadastrado</p>
+}
+
+<hr>
+
+<h2>Exercício 10: Calculadora Simples com Switch</h2>
+
+<select id="seletor-operacao" (change)="trocarOperacao($event)">
+    <option value="Soma">Soma</option>
+    <option value="Subtracao">Subtracao</option>
+    <option value="Divisao">Divisao</option>
+    <option value="Multiplicacao">Multiplicacao</option>
+</select>
+
+<input id="valor1" type="number" (change)="adicionarValor1($event)">
+<input id="valor2" type="number" (change)="adicionarValor2($event)">
+
+@switch(operacao){
+    @case("Soma"){
+        <p>Soma dos valores: {{valor1 + valor2}}</p>
+    }
+    @case("Subtracao"){
+        <p>Subtracao dos valores: {{valor1 - valor2}}</p>
+    }
+    @case("Divisao"){
+        @if(valor2 == 0){
+            <p class="color-red">Erro: Divisão por zero!</p>
+        } @else {
+            <p>Divisão dos valores: {{valor1 / valor2}}</p>
+        }
+    }
+    @case("Multiplicacao"){
+        <p>Multiplicacao dos valores: {{valor1 * valor2}}</p>
+    }
+}
+
+<hr>
+
+   
